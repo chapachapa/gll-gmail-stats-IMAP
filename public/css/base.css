@@ -1,0 +1,39 @@
+div {
+    margin: 0.35em;
+    padding: 0.25em;
+    text-align: center;
+}
+
+div#chartContainer{
+    display: flex;
+    justify-content:center;
+    flex-flow: column;
+}
+
+div.chart{
+}
+
+div#requestDataDiv{
+    background-color: darkred;
+    color: white;
+    width: 200px;
+}
+
+div#requestDataDiv:hover{
+    background-color:red;
+    color: white;
+    cursor: pointer;
+}
+
+div#checkDataDiv{
+    width: 200px;
+    background-color: darkblue;
+    color: white;
+    display:hidden;
+}
+
+div#checkDataDiv:hover{
+    background-color:blue;
+    color: white;
+    cursor: pointer;
+}

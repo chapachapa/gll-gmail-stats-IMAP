@@ -18,7 +18,7 @@ function status(){
   this.total = 0;
   this.unread = 0;
   this.attach = 0;
-  this.type = 0;
+  this.type = {};
   this.ready = false;
 }
 
@@ -46,7 +46,14 @@ router.get('/imap', function(req, res){
 
 
 function getStatus(id){
-  statusBatch[id] = new status;
+
+  if (typeof statusBatch[id] !== 'undefined'){
+    if (statusBatch[id].ready){
+      return;
+    }
+  } else {
+    statusBatch[id] = new status;
+  }
 
   console.log('inside');
   imap.once('ready', function(){
@@ -110,9 +117,8 @@ function getStatus(id){
                   console.log(statusBatch[id]);
                 }
               }
+              counter++;
             });
-
-            counter++;
           });
         }
       });

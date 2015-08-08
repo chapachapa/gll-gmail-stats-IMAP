@@ -24,16 +24,3 @@ div#requestDataDiv:hover{
     color: white;
     cursor: pointer;
 }
-
-div#checkDataDiv{
-    width: 200px;
-    background-color: darkblue;
-    color: white;
-    display:hidden;
-}
-
-div#checkDataDiv:hover{
-    background-color:blue;
-    color: white;
-    cursor: pointer;
-}

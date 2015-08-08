@@ -53,6 +53,23 @@ $(function () {
     });
 
     function displayChart(chartData){
+        console.log(chartData.type);
+
+        var typesArray = [];
+        var types = Object.getOwnPropertyNames(chartData.type);
+        var typesTotal = types.reduce(function(p, c) {
+            return p+chartData.type[c];
+        }, 0);
+        console.log(typesTotal);
+        types.forEach(function(elem, ind){
+            typesArray.push({
+                name: elem,
+                y: chartData.type[elem]
+            });
+        });
+
+        console.log(typesArray);
+
         $('#mailCount').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -61,7 +78,7 @@ $(function () {
                 type: 'pie'
             },
             title: {
-                text: 'Browser market shares January, 2015 to May, 2015'
+                text: 'read / unread mails'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -80,28 +97,16 @@ $(function () {
                 }
             },
             series: [{
-                name: "Brands",
+                name: "# of mails",
                 colorByPoint: true,
                 data: [{
-                    name: "Microsoft Internet Explorer",
-                    y: 56.33
-                }, {
-                    name: "Chrome",
-                    y: 24.03,
+                    name: "Unread emails",
+                    y: chartData.unread / chartData.total,
                     sliced: true,
                     selected: true
                 }, {
-                    name: "Firefox",
-                    y: 10.38
-                }, {
-                    name: "Safari",
-                    y: 4.77
-                }, {
-                    name: "Opera",
-                    y: 0.91
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
+                    name: "read emails",
+                    y: 1 - (chartData.unread / chartData.total)
                 }]
             }]
         });
@@ -114,7 +119,7 @@ $(function () {
                 type: 'pie'
             },
             title: {
-                text: 'Browser market shares January, 2015 to May, 2015'
+                text: 'Emails with Attachment'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -133,28 +138,16 @@ $(function () {
                 }
             },
             series: [{
-                name: "Brands",
+                name: "# of mails",
                 colorByPoint: true,
                 data: [{
-                    name: "Microsoft Internet Explorer",
-                    y: 56.33
-                }, {
-                    name: "Chrome",
-                    y: 24.03,
+                    name: "Emails with Attachment",
+                    y: chartData.attach / chartData.total,
                     sliced: true,
                     selected: true
                 }, {
-                    name: "Firefox",
-                    y: 10.38
-                }, {
-                    name: "Safari",
-                    y: 4.77
-                }, {
-                    name: "Opera",
-                    y: 0.91
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
+                    name: "Emails with No Attachment",
+                    y: 1 - (chartData.attach / chartData.total)
                 }]
             }]
         });
@@ -167,7 +160,7 @@ $(function () {
                 type: 'pie'
             },
             title: {
-                text: 'Browser market shares January, 2015 to May, 2015'
+                text: 'Types of Attachment'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -186,29 +179,9 @@ $(function () {
                 }
             },
             series: [{
-                name: "Brands",
+                name: "# of mails",
                 colorByPoint: true,
-                data: [{
-                    name: "Microsoft Internet Explorer",
-                    y: 56.33
-                }, {
-                    name: "Chrome",
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: "Firefox",
-                    y: 10.38
-                }, {
-                    name: "Safari",
-                    y: 4.77
-                }, {
-                    name: "Opera",
-                    y: 0.91
-                }, {
-                    name: "Proprietary or Undetectable",
-                    y: 0.2
-                }]
+                data: typesArray
             }]
         });
     }

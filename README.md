@@ -1,5 +1,5 @@
 # Gmail Statistics using IMAP
-- Please create a login.json file that looks like this:
+- Please create a *login.json* file that looks like this:
 ```
 {
   "user": "mygmail@gmail.com",
@@ -11,6 +11,6 @@
 ```
 
 - You must change your Google settings to run unsigned(safe) apps and allow Gmail to be accessed using IMAP.
--- It is highly recommended to use a secondary (or dummy account) for this.
+- It is highly recommended to use a secondary (or dummy account) for this.
 
-- Don't forget to *npm install*!
+- Don't forget to *npm install* before running this project!!
